@@ -78,3 +78,15 @@ def signup(request):
         form = CustomUserCreationForm()
 
     return render(request, 'app1/signup.html', {'form': form})
+    def sig__nup(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')  # Redirect to the homepage after signup
+
+    else:
+        form = CustomUserCreationForm()
+
+    return render(request, 'app1/signup.html', {'form': form})
