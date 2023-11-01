@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Illness Selection</title>
+    <title>Illness Form</title>
 </head>
 <body>
-    <h1>Select Your Illnesses</h1>
+    <h1>Illness Form</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Calculate Score</button>
+        {{ diet_change_form.as_p }}
+        {{ illness_form.as_p }}
+        {{ gastr_symptoms_form.as_p}}
+        {{ physical_form.as_p}}
+        <input type="submit" value="Submit">
     </form>
 </body>
 </html>
