@@ -13,7 +13,7 @@ from django.urls import reverse
 def index(request):
     # Your view logic for the 'index' URL pattern
     # Example: render an HTML template
-    return render(request, 'app1/index.html')
+    return render(request, 'app1/home.html')
 
 def about(request):
     # Your view logic for the 'about' URL pattern
