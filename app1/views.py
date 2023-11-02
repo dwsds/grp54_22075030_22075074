@@ -199,7 +199,9 @@ def illness_form(request):
         'physical_form': physical_form,
     })
 
-from django.contrib.auth.forms import AuthenticationForm
+
+
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -213,8 +215,7 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                # Redirect to a success page or home page
-                return redirect('home')
+                return redirect('app1:home')  # Always redirect to the 'home' page on successful login
             else:
                 # Handle authentication failure
                 form.add_error(None, "Please enter a valid username and password.")
@@ -222,15 +223,29 @@ def login_view(request):
         form = CustomLoginForm()
 
     return render(request, 'app1/login.html', {'form': form})
+
+
 def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
+            print("Form is valid")  # Print a message to indicate form validity
+
             user = form.save()
+            print("User created:", user)  # Print the user object
+
             login(request, user)
-            return redirect('login')  # Redirect to the homepage after signup
+            print("User logged in")
+
+            return redirect('app1:login')  # Redirect to the login page after signup
+        else:
+            print("Form is invalid. Errors:", form.errors)  # Print form validation errors
 
     else:
         form = CustomUserCreationForm()
 
     return render(request, 'app1/signup.html', {'form': form})
+
+
+def homepage(request):
+    return render(request, 'app1/home.html')

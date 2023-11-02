@@ -9,4 +9,6 @@ path('about/', views.about, name='about'),
 path('illness-form/', views.illness_form, name='illness_form'),
 path('login/', views.login_view, name='login'),
 path('signup/', views.signup, name='signup'),
+path('home/', views.homepage, name='home'),
+
 ]
