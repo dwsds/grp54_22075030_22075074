@@ -6,6 +6,15 @@
 <body>
     <h1>Result</h1>
     <p>Total Score: {{ total_score }}</p>
+    <!-- <p>{{ message }}</p> -->
+    {% if total_score < 3 %}
+        <p>Well Nourished: No nutritional intervention required and only balanced intake of food items should be ensured.</p>
+    {% elif total_score >= 3 and total_score <= 6 %}
+        <p>Patient is at risk of malnutrition or has mild Malnutrition: Nutritional intervention is required and regular monitoring is required.</p>
+    {% else %}
+        <p>Moderate to Severely Malnourished: Nutritional intervention required and regular monitoring is required.</p>
+    {% endif %}
+
     <!-- You can add more content here to display additional results if needed -->
 </body>
 </html>

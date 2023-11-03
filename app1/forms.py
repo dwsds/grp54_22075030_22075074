@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User 
 from .models import OtherIllnesses , DietChange,Physical,GastrSymptoms
+from .models import UserInfo,PersonalInfo
 
 class IllnessForm(forms.Form):
     metabolic_stress = forms.MultipleChoiceField(
@@ -25,11 +26,10 @@ class IllnessForm(forms.Form):
     ("None", "None")],
         required=False
     )
-
 class DietChangeForm(forms.Form):
     changes = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple,
-        choices=[("Sub-optimal solid diet","sub-optimal solid diet"),
+        choices=[("sub-optimal solid diet","sub-optimal solid diet"),
     ("Taking liquids only","Taking liquids only"),
     ("Hypo caloric diet","Hypo caloric diet"),
     ("Virtually Nil/Starvation","Virtually Nil/Starvation"),
@@ -61,6 +61,24 @@ class PhysicalForm(forms.Form):
  ("Head injury/ Multiple Trauma","Head injury/ Multiple Trauma")],
         required=False
     ) 
+
+# class CombinedInfoForm(forms.ModelForm):
+#     class Meta:
+#         model = UserInfo
+#         fields = ['user_id', 'user_name', 'age', 'gender']
+#     class Meta:
+#         model = PersonalInfo
+#         fields = ['height', 'weight', 'weight_lost']
+class UserInfoForm(forms.ModelForm):
+    class Meta:
+        model = UserInfo
+        fields = ['user_id', 'user_name', 'age', 'gender']
+
+class PersonalInfoForm(forms.ModelForm):
+    class Meta:
+        model = PersonalInfo
+        fields = ['height', 'weight', 'weight_lost']
+
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:

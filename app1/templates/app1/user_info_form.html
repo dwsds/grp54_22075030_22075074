@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add User Information</title>
+</head>
+<body>
+    <h1>Add User Information</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ user_info_form.as_p }}
+        {{ personal_info_form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    
+</body>
+</html>
