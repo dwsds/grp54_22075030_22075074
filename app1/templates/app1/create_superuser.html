@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    <h1>Sign Up</h1>
+   <!-- create_superuser.html -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Superuser</button>
+    </form>
+
+    <p>Already have an account? <a href="{% url 'app1:login' %}">Log in</a></p>
+</body>
+</html>

@@ -72,7 +72,8 @@ class PhysicalForm(forms.Form):
 class UserInfoForm(forms.ModelForm):
     class Meta:
         model = UserInfo
-        fields = ['user_id', 'user_name', 'age', 'gender']
+        fields = ['user_name', 'age', 'gender']
+        exclude = ['user_id']
 
 class PersonalInfoForm(forms.ModelForm):
     class Meta:
@@ -80,10 +81,10 @@ class PersonalInfoForm(forms.ModelForm):
         fields = ['height', 'weight', 'weight_lost']
 
 
-class CustomUserCreationForm(UserCreationForm):
+class SuperuserCreationForm(UserCreationForm):
     class Meta:
-        model = User  # You can use your custom user model here if you have one
-        fields = ('username', 'email')  # Customize the fields you want in the form    
+        model = User  # Import User model from django.contrib.auth
+        fields = ('username', 'email')
 
 class CustomLoginForm(forms.Form):
     username = forms.CharField(max_length=150, label='Username')
