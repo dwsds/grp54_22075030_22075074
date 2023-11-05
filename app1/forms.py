@@ -78,7 +78,7 @@ class UserInfoForm(forms.ModelForm):
 class PersonalInfoForm(forms.ModelForm):
     class Meta:
         model = PersonalInfo
-        fields = ['height', 'weight', 'weight_lost']
+        fields = ['weight', 'height','weight_lost']
 
 
 class SuperuserCreationForm(UserCreationForm):

@@ -15,37 +15,13 @@ from .models import UserInfo, PersonalInfo
 from django.shortcuts import render, redirect
 from .forms import UserInfoForm, PersonalInfoForm,SuperuserCreationForm
 
-# def add_user_info(request):
-#     user_age = None 
-#     if request.method == 'POST':
-#         user_info_form = UserInfoForm(request.POST)
-#         personal_info_form = PersonalInfoForm(request.POST)
-
-#         if user_info_form.is_valid() and personal_info_form.is_valid():
-#             user_info = user_info_form.save()
-#             personal_info = personal_info_form.save()
-#             user_age = user_info_form.cleaned_data['age']
-
-
-#             # You can associate the two models if needed
-#             user_info.personal_info = personal_info
-#             user_info.save()
-
-#             # Redirect to a success page
-#             return redirect('app1:illness_form')
-#     else:
-#         user_info_form = UserInfoForm()
-#         personal_info_form = PersonalInfoForm()
-    
-#     return render(request, 'app1/user_info_form.html', {
-#         'user_info_form': user_info_form,
-#         'personal_info_form': personal_info_form,
-#         'user_age': user_age,
-#     })
 from django.shortcuts import render, redirect
 
 def add_user_info(request):
     user_age = None
+    user_weight = None
+    user_height = None
+    user_lost = None
     if request.method == 'POST':
         user_info_form = UserInfoForm(request.POST)
         personal_info_form = PersonalInfoForm(request.POST)
@@ -54,13 +30,16 @@ def add_user_info(request):
             user_info = user_info_form.save()
             personal_info = personal_info_form.save()
             user_age = user_info_form.cleaned_data['age']
+            
+            user_weight = personal_info_form.cleaned_data['weight']
+            
+            user_height = personal_info_form.cleaned_data['height']
+            user_lost = personal_info_form.cleaned_data['weight_lost']
 
-            # You can associate the two models if needed
             user_info.personal_info = personal_info
             user_info.save()
-
-            # Redirect to the illness form page
-            return redirect('app1:illness_form')
+            
+            return redirect(reverse('app1:illness_form', kwargs={'user_age': user_age, 'user_height': user_height, 'user_weight': user_weight, 'user_lost': user_lost}))
 
     else:
         user_info_form = UserInfoForm()
@@ -70,6 +49,9 @@ def add_user_info(request):
         'user_info_form': user_info_form,
         'personal_info_form': personal_info_form,
         'user_age': user_age,
+        'user_weight':user_weight,
+        'user_height':user_height,
+        'user_lost':user_lost,
     })
 
 
@@ -83,7 +65,7 @@ def about(request):
     # Example: return a simple text response
     return HttpResponse("This is the about page of app1.")
 
-def calculate_total_score(user_age,selected_illnesses, selected_diet_changes, selected_gastr_symptoms, selected_physical):    # Define a dictionary to map illness names to their scores
+def calculate_total_score( user_age,user_weight,user_height,user_lost,selected_illnesses, selected_diet_changes, selected_gastr_symptoms, selected_physical):    # Define a dictionary to map illness names to their scores
     
     illness_scores = {
         "Mental illness": 0,
@@ -128,15 +110,7 @@ def calculate_total_score(user_age,selected_illnesses, selected_diet_changes, se
         "Major burns":2,
         "Severe burns":3,
         "Head injury/ Multiple Trauma":3,}
-    # Calculate the total score for selected illnesses
 
-    # Define dictionaries for scores of selected items (e.g., illness, diet changes, symptoms, and physical)
-    # Replace these dictionaries with your actual data
-    
-    # total_diet_change_score = sum(diet_change_scores.get(diet_changes, 0) for diet_changes in selected_diet_changes if selected_diet_changes is not None)
-    # total_gastr_symptoms_score = sum(gastr_symptoms_scores.get(symptoms, 0) for symptoms in selected_gastr_symptoms if selected_gastr_symptoms is not None)
-    # total_illness_score = sum(illness_scores.get(illness, 0) for illness in selected_illnesses if selected_illnesses is not None)
-    # total_physical_score = sum(physical_scores.get(phy_illness, 0) for phy_illness in selected_physical if selected_physical is not None)
 
     if selected_diet_changes is not None:
         total_diet_change_score = sum(diet_change_scores.get(diet_changes, 0) for diet_changes in selected_diet_changes)
@@ -158,7 +132,6 @@ def calculate_total_score(user_age,selected_illnesses, selected_diet_changes, se
     else:
         total_illness_score=0
 
-    # Calculate the final total score
     total_score = (
         total_illness_score + 
         total_diet_change_score + 
@@ -166,15 +139,41 @@ def calculate_total_score(user_age,selected_illnesses, selected_diet_changes, se
         total_physical_score
     )
     
-    # if user_age >= 70:
-    #     total_score += 1
-    # return total_score
+    if isinstance(user_age, int):
+    # user_age is an integer
+        print("user_age is an integer") 
+    print(f'user_age: {user_age}')
+    print(f'user_weight: {user_weight}')
+    print(f'user_height: {user_height}')
+    print(f'user_lost: {user_lost}')
+    
+    if user_age >= 70:
+        print("total score should be increased by 1")
+        total_score += 1
 
-    if user_age is not None and isinstance(user_age, int):
-        if user_age >= 70:
-            total_score += 1
+   
+    percentage_lost = (user_lost / user_weight) * 100
+    if 5 <= percentage_lost <= 10:
+        
+        total_score += 1
+    elif percentage_lost > 10:
+        total_score += 2
+        print("total score should be increased by 2")
+
+    
+    bmi = (user_weight * 10000) / (user_height ** 2)
+    print(f"BMI: {bmi}")  # Add this line for debugging
+
+    if 16.5 <= bmi <= 18.5:
+        total_score += 1
+    elif bmi < 16.5:
+        total_score += 2
+    print(f"Total Score after BMI: {total_score}")  # Add this line for debugging
+
 
     return total_score
+
+
 
 
 def get_nutritional_message(total_score):
@@ -185,10 +184,15 @@ def get_nutritional_message(total_score):
     else:
         return "Moderate to Severely Malnourished: Nutritional intervention required and regular monitoring is required."
 
-def illness_form(request):
+def illness_form(request, user_age,user_height,user_weight,user_lost):
+    if isinstance(user_age, int):
+    # user_age is an integer
+        print("user_age is an integer") 
+    print(f'user_age: {user_age}')
+   
     
-    user_age = None
-    user_info_form = UserInfoForm()  # Define the form here
+    user_info_form = UserInfoForm()
+    personal_info_form = PersonalInfoForm()  # Define the form here
 
     diet_change_form = DietChangeForm()
     illness_form = IllnessForm()
@@ -202,7 +206,7 @@ def illness_form(request):
         if user_info_form.is_valid() and personal_info_form.is_valid():
             user_info = user_info_form.save()
             personal_info = personal_info_form.save()
-            user_age = user_info_form.cleaned_data['age']
+            
 
             # You can associate the two models if needed
             user_info.personal_info = personal_info
@@ -226,6 +230,9 @@ def illness_form(request):
 
                 total_score = calculate_total_score(
                     user_age,
+                    user_weight,
+                    user_height,
+                    user_lost,
                     selected_illnesses, 
                     selected_diet_changes, 
                     selected_gastr_symptoms, 
@@ -246,7 +253,8 @@ def illness_form(request):
         'illness_form': illness_form,
         'gastr_symptoms_form': gastr_symptoms_form,
         'physical_form': physical_form,
-        'user_info_form': user_info_form,  # Pass the form to the template
+        'user_info_form': user_info_form, 
+        'personal_info_form':personal_info_form, # Pass the form to the template
     })
 
 
