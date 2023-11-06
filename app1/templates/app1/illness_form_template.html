@@ -1,18 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Illness Form</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
         body {
-            background-color: rgb(44, 40, 40);
-            font-family: "poppins";
+            background-image: url("{% static 'app1/img/info-bg.jpg' %}");
+            background-color: rgb(79, 128, 39);
+            font-family: 'Quicksand', sans-serif;
             font-size: 20px;
+            background-repeat: no-repeat;
         }
         h1 {
             text-align: center;
             padding: 20px;
             font-weight: normal;
-            background-color: rgb(51, 48, 48) 228);
+            background-color: none;
+            color: white;
         }
 
         .form-container {
@@ -22,6 +27,7 @@
             background-color: rgb(236, 228, 228);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            margin-bottom: 70px;
         }
 
         input[type="checkbox"] {
@@ -33,27 +39,27 @@
         }
         button[type="submit"] {
             display: block;
-            
-           
             background-color: rgb(146, 201, 75);
             color: white;
             border: none;
             cursor: pointer;
             border-radius: 8px;
-            font-weight: bold;
+            
+            padding: 10px 20px;
         }
     </style>
 </head>
 <body>
-    <h1 style="color:rgb(203, 238, 122)"></h1>
+    <h1>Hi, {{ user_name }}! Tell us about your medical history</h1>
+
     <div class="form-container">
         <form method="post">
             {% csrf_token %}
-            {{ diet_change_form.as_p }}
-            {{ illness_form.as_p }}
-            {{ gastr_symptoms_form.as_p }}
-            {{ physical_form.as_p }}
-            <button type="submit" style="padding: 10px 20px;">Submit</button>
+            {{ diet_change_form.as_p|safe }}
+            {{ illness_form.as_p|safe }}
+            {{ gastr_symptoms_form.as_p|safe }}
+            {{ physical_form.as_p|safe }}
+            <button type="submit" style="font-size: 17px;font-weight: 100px;">Submit</button>
         </form>
     </div>
 </body>

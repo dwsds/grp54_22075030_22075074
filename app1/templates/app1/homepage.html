@@ -63,6 +63,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="">Contact us</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'app1:login' %}">Logout</a>
+              </li>
               </ul>
             </div>
           </div>
@@ -167,9 +170,11 @@
         <img src="{% static 'app1/img/p-4.jpg' %}" alt="">
       </div>
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center" style="margin-top: 55px;">
       <a href="">
-        See More
+        <div>
+        Connect with more Users
+        </div>
       </a>
     </div>
   </section>
@@ -183,12 +188,19 @@
     <div class="container">
       <div class="d-flex flex-column align-items-center text-center">
         <h2 class="custom_heading "style="color:white">
-          Why choose Us?
+          Why Choose Us?
         </h2>
         <p style="color:white">
-          Wellnest provides with a free health check sitting at home with just a few clicks.
-          It is user friendly and is suitable for people of all age,height,weight and body type.
+          Experience the Convenience of Wellnest
+
+          At Wellnest, we offer a hassle-free health check that you can enjoy from the comfort of your home. Our user-friendly platform is designed to cater to individuals of all ages, heights, weights, and body types.
+
+          Join our Community
+
+          Join our community of health-conscious individuals and take the first step towards a healthier you.
+
         </p>
+        <p style="color: white;">Number of registered users: {{ user_count }}</p>
       </div>
     </div>
     <div class="d-flex justify-content-center">
@@ -204,37 +216,7 @@
 
   <!-- contact section -->
 
-  <section class="contact_section layout_padding">
-    <div class="container">
-      <div class="col-md-6">
-        <div class="d-flex mb-4 ml-4 ml-md-0">
-          <h2 class="custom_heading text-center">
-            CONTACT US
-          </h2>
-        </div>
-        <form action="">
-          <div>
-            <input type="text" placeholder="Name" />
-          </div>
-          <div>
-            <input type="email" placeholder="Email" />
-          </div>
-          <div>
-            <input type="text" placeholder="Phone Number" />
-          </div>
-          <div>
-            <input type="text" class="message-box" placeholder="Message" />
-          </div>
-          <div class="d-flex justify-content-center mt-4 ">
-            <button>
-              SEND
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-  </section>
+  
 
   <!-- end contact section -->
 

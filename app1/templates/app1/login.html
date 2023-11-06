@@ -2,8 +2,12 @@
 
 {% block content %}
 <style>
+     @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
     body {
-        background-color: rgb(243, 231, 231);
+        background-color:  rgb(243, 231, 231);
+        font-size: 20px; /* Increase the font size */
+        font-family: 'Quicksand', sans-serif; 
+        font-weight: 700;/* Set the font-family to Quicksand */
     }
     .form-group input {
     border: 1px; /* Remove border */
@@ -14,14 +18,14 @@
 </style>
 
 <div style="background-image: url('{% static 'app1/img/hero.jpg' %}'); color: darkgreen; display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 250px;">
-    <h2 style="font-family: 'poppins'; font-weight: 400; font-size: 36px;">Login</h2>
+    <h2 style="font-weight: 400; font-size: 36px;">Login</h2>
 
     <form method="post" style="background-color: rgb(236, 228, 228); padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
         {% csrf_token %}
         <div class="form-group">
             {{ form.as_p }}
         </div>
-        <button type="submit" style="font-family: 'poppins'; background-color: rgb(146, 201, 75); color: rgb(255, 255, 255); border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 20px;margin-top: 18px;">Login</button>    </form>
+        <button type="submit" style="background-color: rgb(146, 201, 75); color: rgb(255, 255, 255); border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 20px;margin-top: 18px;">Login</button>    </form>
     <p style="color: darkgreen; margin-top: 20px;">Don't have an account? <a href="{% url 'app1:create_superuser' %}" style="color: rgb(255, 255, 255); text-decoration: none;">Sign up</a></p>
 </div>
 {% endblock %}

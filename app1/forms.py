@@ -73,16 +73,25 @@ class PhysicalForm(forms.Form):
 #     class Meta:
 #         model = PersonalInfo
 #         fields = ['height', 'weight', 'weight_lost']
+from django import forms
+from .models import UserInfo
+
 class UserInfoForm(forms.ModelForm):
+    user_name = forms.CharField(label="What should we call you?", max_length=60,required=False,)
+    
     class Meta:
         model = UserInfo
         fields = ['user_name', 'age', 'gender']
         exclude = ['user_id']
 
+
 class PersonalInfoForm(forms.ModelForm):
+    # Define a custom label for the 'weight_lost' field
+    weight_lost = forms.DecimalField(label='Weight lost in the past 3-6 months', required=False)
+
     class Meta:
         model = PersonalInfo
-        fields = ['weight', 'height','weight_lost']
+        fields = ['weight', 'height', 'weight_lost']
 
 
 class SuperuserCreationForm(UserCreationForm):

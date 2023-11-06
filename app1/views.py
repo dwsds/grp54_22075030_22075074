@@ -11,6 +11,7 @@ from .models import UserInfo
 from .forms import UserInfoForm,PersonalInfoForm
 from django.http import HttpResponseRedirect
 from django import forms
+from django.contrib.auth.models import User
 from .models import UserInfo, PersonalInfo
 from django.shortcuts import render, redirect
 from .forms import UserInfoForm, PersonalInfoForm,SuperuserCreationForm
@@ -22,6 +23,7 @@ def add_user_info(request):
     user_weight = None
     user_height = None
     user_lost = None
+    user_name=None
     if request.method == 'POST':
         user_info_form = UserInfoForm(request.POST)
         personal_info_form = PersonalInfoForm(request.POST)
@@ -32,6 +34,8 @@ def add_user_info(request):
             user_age = user_info_form.cleaned_data['age']
             
             user_weight = personal_info_form.cleaned_data['weight']
+            user_name = user_info_form.cleaned_data['user_name']
+            # Pass the user_name to the context
             
             user_height = personal_info_form.cleaned_data['height']
             user_lost = personal_info_form.cleaned_data['weight_lost']
@@ -39,7 +43,7 @@ def add_user_info(request):
             user_info.personal_info = personal_info
             user_info.save()
             
-            return redirect(reverse('app1:illness_form', kwargs={'user_age': user_age, 'user_height': user_height, 'user_weight': user_weight, 'user_lost': user_lost}))
+            return redirect(reverse('app1:illness_form', kwargs={'user_age': user_age, 'user_height': user_height, 'user_weight': user_weight, 'user_lost': user_lost, 'user_name': user_name}))
 
     else:
         user_info_form = UserInfoForm()
@@ -52,6 +56,7 @@ def add_user_info(request):
         'user_weight':user_weight,
         'user_height':user_height,
         'user_lost':user_lost,
+        'user_name':user_name,
     })
 
 
@@ -121,7 +126,7 @@ def calculate_total_score( user_age,user_weight,user_height,user_lost,selected_i
         total_gastr_symptoms_score = 0
 
     if selected_physical is not None:
-        total_physical_score = sum(physical_scores.get(phy_illness, 0) for phy_illness in selected_physical)
+        total_physical_score = sum(physical_scores.get(selected_physical, 0) for selected_physical in selected_physical)
     else:
         total_physical_score = 0
 
@@ -182,11 +187,15 @@ def get_nutritional_message(total_score):
     else:
         return "Moderate to Severely Malnourished: Nutritional intervention required and regular monitoring is required."
 
-def illness_form(request, user_age,user_height,user_weight,user_lost):
+def illness_form(request, user_age,user_height,user_weight,user_lost,user_name):
     if isinstance(user_age, int):
     # user_age is an integer
         print("user_age is an integer") 
     print(f'user_age: {user_age}')
+    print(f'user_name exists:{user_name}') 
+   
+    
+
    
     
     user_info_form = UserInfoForm()
@@ -200,6 +209,9 @@ def illness_form(request, user_age,user_height,user_weight,user_lost):
     if request.method == 'POST':
         user_info_form = UserInfoForm(request.POST)
         personal_info_form = PersonalInfoForm(request.POST)
+        print("User Info Form Errors:")
+        print(user_info_form.errors)
+        
 
         if user_info_form.is_valid() and personal_info_form.is_valid():
             user_info = user_info_form.save()
@@ -222,9 +234,9 @@ def illness_form(request, user_age,user_height,user_weight,user_lost):
                 physical_form.is_valid()
             ):
                 selected_illnesses = illness_form.cleaned_data.get('metabolic_stress')
-                selected_diet_changes = diet_change_form.cleaned_data.get('metabolic_stress')
-                selected_gastr_symptoms = gastr_symptoms_form.cleaned_data.get('gastr_symptoms')
-                selected_physical = physical_form.cleaned_data.get('physical')
+                selected_diet_changes = diet_change_form.cleaned_data.get('changes')
+                selected_gastr_symptoms = gastr_symptoms_form.cleaned_data.get('symptoms')
+                selected_physical = physical_form.cleaned_data.get('phy_illness')
 
                 total_score = calculate_total_score(
                     user_age,
@@ -253,6 +265,7 @@ def illness_form(request, user_age,user_height,user_weight,user_lost):
         'physical_form': physical_form,
         'user_info_form': user_info_form, 
         'personal_info_form':personal_info_form, # Pass the form to the template
+        'user_name': user_name,
     })
 
 
@@ -277,9 +290,9 @@ def login_view(request):
 
     return render(request, 'app1/login.html', {'form': form})
 
-
 def homepage(request):
-    return render(request, 'app1/homepage.html')
+    user_count = User.objects.count()
+    return render(request, 'app1/homepage.html', {'user_count': user_count})
 def create_superuser(request):
     if request.method == 'POST':
         form = SuperuserCreationForm(request.POST)
@@ -292,3 +305,4 @@ def create_superuser(request):
     else:
         form = SuperuserCreationForm()
     return render(request, 'app1/create_superuser.html', {'form': form})
+

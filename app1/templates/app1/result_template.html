@@ -4,44 +4,69 @@
 <head>
     <title>Subjective Global Assessment (SGA) Result</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
         body {
-            background-color: rgb(243, 231, 231);
-            color: darkgreen;
-            font-family: 'Courier New', Courier, monospace;
+            background-image: url("{% static 'app1/img/info-bg.jpg' %}"); /* Set the background image */
+            background-color: rgb(46, 42, 42);
+            font-family: 'Quicksand', sans-serif;
+            
         }
         h1 {
             text-align: center;
             padding: 20px;
             font-weight: normal;
+            color: white;
         }
-        p {
-            margin: 20px;
-            padding: 10px;
-            border: 2px solid darkgreen;
-            border-radius: 5px;
+        .result-container {
+            max-width: 800px; /* Increase the max-width to make the container wider */
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgb(236, 228, 228);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        
+        .diet-chart {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+        .contact-details {
+            color: rgb(134, 199, 230);
         }
     </style>
 </head>
 <body>
     <h1>Subjective Global Assessment (SGA) Result</h1>
-    <p>Total Score: {{ total_score }}</p>
-    <p>
-        The subjective global assessment (SGA) is a nutrition assessment tool that refers to an overall evaluation of a patient's history and physical examination and uses structured clinical parameters to diagnose malnutrition. The SGA is known to be a reliable and valid tool that predicts morbidity and mortality associated with malnutrition. The objective of SGA is to identify patients likely to benefit from nutrition intervention and therefore to identify persons in whom inadequate nutrition intake or absorption explain features of malnutrition, including body wasting. There are other conditions that cause weight loss, muscle wasting, and fat loss, including cachexia and sarcopenia. Acknowledging that these 2 last conditions differ in their mechanism of body wasting and consequently in the outcomes of nutrition intervention, the practitioner needs a tool to identify when malnutrition is the dominating factor to explain body wasting. The SGA form has been revised to clearly reflect the key concepts behind the diagnosis of malnutrition and help to distinguish this condition from other wasting conditions. 
-    </p>
-    {% if total_score < 3 %}
-        <p>Well Nourished: No nutritional intervention is required, and maintaining a balanced diet is recommended.</p>
-        <p>Here's a balanced diet chart you can follow:</p>
-        <img src="{% static 'app1/img/balanced diet.jpg' %}" alt="Balanced Diet Chart" style="display: block; margin: 0 auto;">
-    {% elif total_score >= 3 and total_score <= 6 %}
-        <p>Patient is at risk of malnutrition or has mild malnutrition: Nutritional intervention is recommended, and regular monitoring is required.</p>
-        <p>Here's a balanced diet chart you can follow:</p>
-        <img src="{% static 'app1/img/balanced diet.jpg' %}" alt="Balanced Diet Chart" style="display: block; margin: 0 auto;">
-    {% else %}
-        <p>Moderate to Severely Malnourished: Nutritional intervention is required, and regular monitoring is crucial for patient care.</p>
-        <p>Here are the contact details of our doctors:</p>
-        <p>Dr. John Doe - Contact: +1234567890</p>
-        <p>Dr. Jane Smith - Contact: +9876543210</p>
-    {% endif %}
-    <!-- You can add more content here to display additional results or recommendations if needed -->
+    <div class="result-container">
+        <div class="score" style="font-size: 25px;">
+            Total Score: {{ total_score }}
+        </div>
+        <div>
+        {% if total_score < 3 %}
+            <p style="color: rgb(115, 206, 41);font-weight: bold;font-size: 25px;">Well Nourished: No nutritional intervention is required, and maintaining a balanced diet is recommended.</p>
+            Here's a balanced diet chart you can follow:<br>
+            <br><img src="{% static 'app1/img/balanced diet.jpg' %}" alt="Balanced Diet Chart" class="diet-chart">
+        {% elif total_score >= 3 and total_score <= 6 %}
+            <p style="color: orange;font-size: 25px;font-weight: bold;">Patient is at risk of malnutrition or has mild malnutrition: Nutritional intervention is recommended, and regular monitoring is required.</p>
+            Here's a balanced diet chart you can follow:<br>
+            <br><img src="{% static 'app1/img/balanced diet.jpg' %}" alt="Balanced Diet Chart" class="diet-chart">
+            <p style="font-size: 25px;">
+            <br>Here are the contact details of our dieticians:<br>
+            Dr. Monika Mittal - Contact: +1234567890<br>
+            Dr. Jayprakash - Contact: +9876543210
+            </p>
+        {% else %}
+            <p style="color:red;font-weight: bold;font-size: 25px;">Moderate to Severely Malnourished: Nutritional intervention is required, and regular monitoring is crucial for patient care.</p>
+            <p style="font-size: 25px;"><br>Here are the contact details of our doctors:<br>
+            Dr. Malini Shindey - Contact: +1234567890<br>
+            Dr. Konkana - Contact: +9876543210
+            </p>
+        {% endif %}
+        </div>
+        <br><br><p style="color:#03606D;font-size: 20px;">
+        ** The subjective global assessment (SGA) is a nutrition assessment tool that refers to an overall evaluation of a patient's history and physical examination and uses structured clinical parameters to diagnose malnutrition. The SGA is known to be a reliable and valid tool that predicts morbidity and mortality associated with malnutrition. The objective of SGA is to identify patients likely to benefit from nutrition intervention and therefore to identify persons in whom inadequate nutrition intake or absorption explain features of malnutrition. There are other conditions that cause weight loss, muscle wasting, and fat loss, including cachexia and sarcopenia. Acknowledging that these two last conditions differ in their mechanism of body wasting and consequently in the outcomes of nutrition intervention, the practitioner needs a tool to identify when malnutrition is the dominating factor to explain body wasting. The SGA form has been revised to clearly reflect the key concepts behind the diagnosis of malnutrition and help to distinguish this condition from other wasting conditions.</p>
+    </div>
 </body>
 </html>
