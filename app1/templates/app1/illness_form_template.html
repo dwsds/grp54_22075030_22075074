@@ -21,13 +21,14 @@
         }
 
         .form-container {
-            max-width: 500px;
+            max-width: 700px;
             margin: 0 auto;
             padding: 20px;
             background-color: rgb(236, 228, 228);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             margin-bottom: 70px;
+            margin-top: 50px;
         }
 
         input[type="checkbox"] {
@@ -53,7 +54,7 @@
     <h1>Hi, {{ user_name }}! Tell us about your medical history</h1>
 
     <div class="form-container">
-        <form method="post">
+        <form method="post" style="font-size: 25px;">
             {% csrf_token %}
             {{ diet_change_form.as_p|safe }}
             {{ illness_form.as_p|safe }}

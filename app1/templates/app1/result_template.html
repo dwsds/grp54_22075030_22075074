@@ -7,9 +7,9 @@
         @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
         body {
             background-image: url("{% static 'app1/img/info-bg.jpg' %}"); /* Set the background image */
-            background-color: rgb(46, 42, 42);
+            background-color: rgb(79, 128, 39);
             font-family: 'Quicksand', sans-serif;
-            
+            background-repeat: no-repeat;
         }
         h1 {
             text-align: center;
@@ -19,11 +19,12 @@
         }
         .result-container {
             max-width: 800px; /* Increase the max-width to make the container wider */
-            margin: 0 auto;
+            margin-left: 490px;
             padding: 20px;
             background-color: rgb(236, 228, 228);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            margin-bottom: 40px;
         }
         
         .diet-chart {
@@ -39,11 +40,11 @@
 </head>
 <body>
     <h1>Subjective Global Assessment (SGA) Result</h1>
-    <div class="result-container">
+    <div class="result-container" >
         <div class="score" style="font-size: 25px;">
-            Total Score: {{ total_score }}
+            Total Score: {{ total_score }} **
         </div>
-        <div>
+        <div style="margin-left: 50px;">
         {% if total_score < 3 %}
             <p style="color: rgb(115, 206, 41);font-weight: bold;font-size: 25px;">Well Nourished: No nutritional intervention is required, and maintaining a balanced diet is recommended.</p>
             Here's a balanced diet chart you can follow:<br>

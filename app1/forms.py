@@ -78,6 +78,7 @@ from .models import UserInfo
 
 class UserInfoForm(forms.ModelForm):
     user_name = forms.CharField(label="What should we call you?", max_length=60,required=False,)
+   
     
     class Meta:
         model = UserInfo
@@ -87,7 +88,10 @@ class UserInfoForm(forms.ModelForm):
 
 class PersonalInfoForm(forms.ModelForm):
     # Define a custom label for the 'weight_lost' field
-    weight_lost = forms.DecimalField(label='Weight lost in the past 3-6 months', required=False)
+    weight = forms.DecimalField(label='Weight(in kgs)', required=False)
+    weight_lost = forms.DecimalField(label='Weight lost in the past 3-6 months(in kgs)', required=False)
+    height = forms.DecimalField(label='Height(in cms)', required=False)
+
 
     class Meta:
         model = PersonalInfo

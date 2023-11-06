@@ -25,6 +25,9 @@
   <!-- Custom styles for this template -->
   <link href="{% static 'app1/css/style.css' %}" rel="stylesheet" />
   <!-- responsive style -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
   <link href="{% static 'app1/css/responsive.css' %}" rel="stylesheet" />
 </head>
 
@@ -57,12 +60,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'app1:add_user_info' %}"> Get Started </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href=""> Our Faculty </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Contact us</a>
-                </li>
+                
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'app1:login' %}">Logout</a>
               </li>
@@ -170,7 +168,7 @@
         <img src="{% static 'app1/img/p-4.jpg' %}" alt="">
       </div>
     </div>
-    <div class="d-flex justify-content-center" style="margin-top: 55px;">
+    <div class="d-flex justify-content-center" style="margin-top: 55px;font-family: 'Quicksand', sans-serif;">
       <a href="">
         <div>
         Connect with more Users
@@ -187,10 +185,10 @@
   <section class="why_section layout_padding">
     <div class="container">
       <div class="d-flex flex-column align-items-center text-center">
-        <h2 class="custom_heading "style="color:white">
+        <h2 class="custom_heading "style="color:white;font-family: 'Quicksand', sans-serif;">
           Why Choose Us?
         </h2>
-        <p style="color:white">
+        <p style="color:white;font-family: 'Quicksand', sans-serif; ">
           Experience the Convenience of Wellnest
 
           At Wellnest, we offer a hassle-free health check that you can enjoy from the comfort of your home. Our user-friendly platform is designed to cater to individuals of all ages, heights, weights, and body types.
@@ -200,10 +198,10 @@
           Join our community of health-conscious individuals and take the first step towards a healthier you.
 
         </p>
-        <p style="color: white;">Number of registered users: {{ user_count }}</p>
+        <p style="color: white;font-family: 'Quicksand', sans-serif;">Number of registered users: {{ user_count }}</p>
       </div>
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center" style="font-family: 'Quicksand', sans-serif;">
       <a href="{% url 'app1:add_user_info' %}">
         Get Started
       </a>
@@ -223,7 +221,7 @@
   <!-- client section -->
   <section class="client_section layout_padding">
     <div class="d-flex justify-content-center">
-      <h2 class="custom_heading"style="color: white;">
+      <h2 class="custom_heading"style="color: white;font-family: 'Quicksand', sans-serif;">
         Reviews
       </h2>
     </div>
@@ -238,28 +236,29 @@
           <div class="carousel-item active">
             <div class="client_container layout_padding">
               <div class="img_box">
-                <img src="{% static 'app1/img/client.png' %}" alt="">
-              </div>
+                <img src="{% static 'app1/img/logo.png' %}" alt="" style="width: 100px; height: 100px;">
+            </div>
+            
 
               <div class="detail_box">
                 <h5>
                   <span>
-                    M
-                  </span>
-                  <span>
-                    o
-                  </span>
-                  <span>
-                    r
+                    U
                   </span>
                   <span>
                     s
                   </span>
                   <span>
-                    w
+                    e
+                  </span>
+                  <span>
+                    r
+                  </span>
+                  <span>
+                    1
                   </span>
                 </h5>
-                <p>
+                <p style="font-family: 'Quicksand', sans-serif;font-size: 20px;">
                   It is an amazing app,made it so much easier for me to keep a tarck of my health.
                 </p>
               </div>
@@ -268,28 +267,28 @@
           <div class="carousel-item">
             <div class="client_container layout_padding">
               <div class="img_box">
-                <img src="{% static 'app1/img/client.png' %}" alt="">
+                <img src="{% static 'app1/img/logo.png' %}" alt="" style="width: 100px; height: 100px;">
               </div>
 
               <div class="detail_box">
                 <h5>
                   <span>
-                    M
-                  </span>
-                  <span>
-                    o
-                  </span>
-                  <span>
-                    r
+                    U
                   </span>
                   <span>
                     s
                   </span>
                   <span>
-                    w
+                    e
+                  </span>
+                  <span>
+                    r
+                  </span>
+                  <span>
+                    2
                   </span>
                 </h5>
-                <p>
+                <p style="font-family: 'Quicksand', sans-serif;font-size: 20px;">
                  Welnnest is very useful.I t is helping me save a lot of money and trips to the hospital.
                 </p>
               </div>
@@ -298,28 +297,28 @@
           <div class="carousel-item">
             <div class="client_container layout_padding">
               <div class="img_box">
-                <img src="{% static 'app1/img/client.png' %}" alt="">
+                <img src="{% static 'app1/img/logo.png' %}" alt="" style="width: 100px; height: 100px;">
               </div>
 
               <div class="detail_box">
                 <h5>
                   <span>
-                    M
+                    U
                   </span>
                   <span>
-                    o
+                   s 
+                  </span>
+                  <span>
+                   e 
                   </span>
                   <span>
                     r
                   </span>
                   <span>
-                    s
-                  </span>
-                  <span>
-                    w
+                    3
                   </span>
                 </h5>
-                <p>
+                <p style="font-family: 'Quicksand', sans-serif;font-size: 20px;">
                   A neighbour recommended this app to us and now our whole family uses it. It keeps us healthy and lets us keep a track of our diets
                 </p>
               </div>
