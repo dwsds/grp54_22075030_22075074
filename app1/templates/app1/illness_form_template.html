@@ -2,16 +2,59 @@
 <html>
 <head>
     <title>Illness Form</title>
+    <style>
+        body {
+            background-color: rgb(44, 40, 40);
+            font-family: "poppins";
+            font-size: 20px;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            font-weight: normal;
+            background-color: rgb(51, 48, 48) 228);
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgb(236, 228, 228);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        input[type="checkbox"] {
+            border: 1px solid transparent;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: rgb(255, 255, 255);
+            outline: none;
+        }
+        button[type="submit"] {
+            display: block;
+            
+           
+            background-color: rgb(146, 201, 75);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h1>Illness Form</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ diet_change_form.as_p }}
-        {{ illness_form.as_p }}
-        {{ gastr_symptoms_form.as_p}}
-        {{ physical_form.as_p}}
-       <button type ='submit'>Submit</button>
-    </form>
+    <h1 style="color:rgb(203, 238, 122)"></h1>
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            {{ diet_change_form.as_p }}
+            {{ illness_form.as_p }}
+            {{ gastr_symptoms_form.as_p }}
+            {{ physical_form.as_p }}
+            <button type="submit" style="padding: 10px 20px;">Submit</button>
+        </form>
+    </div>
 </body>
 </html>

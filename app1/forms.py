@@ -6,6 +6,7 @@ from .models import UserInfo,PersonalInfo
 
 class IllnessForm(forms.Form):
     metabolic_stress = forms.MultipleChoiceField(
+        label="Any previous illnesses?",
         widget=forms.CheckboxSelectMultiple,
         choices=[("Mental illness", "Mental illness"),
     ("Minor surgery", "Minor surgery"),
@@ -28,6 +29,7 @@ class IllnessForm(forms.Form):
     )
 class DietChangeForm(forms.Form):
     changes = forms.MultipleChoiceField(
+        label="Any recent changes you've made to your diet?",
         widget=forms.CheckboxSelectMultiple,
         choices=[("sub-optimal solid diet","sub-optimal solid diet"),
     ("Taking liquids only","Taking liquids only"),
@@ -39,6 +41,7 @@ class DietChangeForm(forms.Form):
    
 class GastrSymptomsForm(forms.Form):
     symptoms = forms.MultipleChoiceField(
+        label="Any Gastrointestinal Symptoms you face?",
         widget=forms.CheckboxSelectMultiple,
         choices=[
             ("Nausea", "Nausea"),
@@ -51,6 +54,7 @@ class GastrSymptomsForm(forms.Form):
 
 class PhysicalForm(forms.Form):
     phy_illness = forms.MultipleChoiceField(
+        label="Any Physical problems?",
         widget=forms.CheckboxSelectMultiple,
         choices=[("Edema","Edema"),
  ("Muscle Wasting","Muscle Wasting"),

@@ -61,9 +61,7 @@ def index(request):
     return render(request, 'app1/home.html')
 
 def about(request):
-    # Your view logic for the 'about' URL pattern
-    # Example: return a simple text response
-    return HttpResponse("This is the about page of app1.")
+    return render(request, 'app1/about.html')
 
 def calculate_total_score( user_age,user_weight,user_height,user_lost,selected_illnesses, selected_diet_changes, selected_gastr_symptoms, selected_physical):    # Define a dictionary to map illness names to their scores
     

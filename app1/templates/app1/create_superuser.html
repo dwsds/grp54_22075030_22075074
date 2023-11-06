@@ -1,19 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-</head>
-<body>
-    <h1>Sign Up</h1>
-   <!-- create_superuser.html -->
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Sign Up</button>
-    </form>
+{% load static %}
 
-    <p>Already have an account? <a href="{% url 'app1:login' %}">Log in</a></p>
-</body>
-</html>
+{% block content %}
+<style>
+    body {
+        background-color:  rgb(243, 231, 231);
+        font-size: 20px; /* Increase the font size */
+    }
+    .container {
+        padding: 40px; /* Increase the padding */
+    }
+    
+    .btn-link {
+        font-size: 20px; /* Increase the font size */
+        margin-top: 20px; /* Increase the margin */
+    }
+    .form-group input {
+    border: 1px; /* Remove border */
+    border-radius: 8px; /* Add rounded corners */
+    padding: 10px; /* Add padding for spacing */
+    background-color: rgb(255, 255, 255); /* Set background color */
+    }
+
+</style>
+
+<div style="background-image: url('{% static 'app1/img/hero.jpg' %}'); color: darkgreen; display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 100px;">
+    <h2 style="font-family: 'poppins'; font-weight: 400; font-size: 36px; /* Increase the font size */">Sign Up</h2>
+
+    <form method="post" style="background-color: rgb(236, 228, 228); padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+        {% csrf_token %}
+        <div class="form-group">
+        {{ form.as_p }}
+        </div>
+        <button type="submit" style="font-family: 'poppins';background-color: rgb(145, 199, 46); color: rgb(255, 255, 255); border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 20px; /* Increase the font size */">Sign Up</button>
+    </form>
+    <p class="btn-link" style="color: darkgreen; font-size: 20px; /* Increase the font size */ margin-top: 40px;">Already have an account? <a href="{% url 'app1:login' %}" style="color: rgb(255, 255, 255); text-decoration: none;">Log in</a></p>
+</div>
+{% endblock %}

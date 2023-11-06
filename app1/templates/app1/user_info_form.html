@@ -2,24 +2,65 @@
 <html>
 <head>
     <title>Add User Information</title>
+    <style>
+        body {
+            background-color: rgb(46, 42, 42);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-group input {
+            border: 1px;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: rgb(255, 255, 255);
+            margin: 10px 0; /* Increase the margin for spacing */
+        }
+        .form-container {
+            background-color: rgb(236, 228, 228);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        button[type="submit"] {
+            font-family: 'poppins';
+            background-color: rgb(146, 201, 75);
+            color: rgb(255, 255, 255);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 20px;
+            margin-top: 18px;
+        }
+        .errorlist {
+            color: #ff0000;
+        }
+    </style>
 </head>
 <body>
-    <h1>Add User Information</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ user_info_form.as_p }}
-        {{ personal_info_form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-    {% if user_info_form.errors %}
-    <ul class="errorlist">
-        {% for field in user_info_form %}
-            {% for error in field.errors %}
-                <li>{{ error }}</li>
+    <div class="form-container">
+        <h1>Start by personalising your profile</h1>
+        <h2>Tell us about yourself</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ user_info_form.as_p }}
+                {{ personal_info_form.as_p }}
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        {% if user_info_form.errors %}
+        <ul class="errorlist">
+            {% for field in user_info_form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
-    </ul>
-    {% endif %}
-    
+        </ul>
+        {% endif %}
+    </div>
 </body>
 </html>

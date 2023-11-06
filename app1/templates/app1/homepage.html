@@ -1,10 +1,420 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Home</title>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>WELLNEST</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'app1/css/bootstrap.css' %}" />
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'app1/css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'app1/css/responsive.css' %}" rel="stylesheet" />
 </head>
-<body>
-    <h1>Welcome to HomePage!</h1>
-    <a href="{% url 'app1:add_user_info' %}" class="btn btn-primary">Start by customizing your profile</a>
+
+<body style="background-color: rgb(53, 56, 49)">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="/home/">
+            <img src="{% static 'app1/img/logo.png' %}" alt="" />
+            <span>
+              Medi
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'app1:home' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'app1:about' %}"> About </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'app1:add_user_info' %}"> Get Started </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href=""> Our Faculty </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="">Contact us</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    <!-- hero section -->
+    <section class="hero_section" style="background-image: url('{% static 'app1/img/hero.jpg' %}'); margin-top:20px">
+      <div class="hero_detail">
+          <h1 style="letter-spacing: 150px;margin-left: 190px;">
+              <span>
+                  w
+              </span>
+              <span>
+                  e
+              </span>
+              <span>
+                  l
+              </span>
+              <span>
+                  l
+              </span>
+              <span>
+                  n
+              </span>
+              <span>
+                  e
+              </span>
+              <span>
+                  s
+              </span>
+              <span>
+                  t
+              </span>
+          </h1>
+          <h3>
+              A Health App
+          </h3>
+      </div>
+      <div class="hero_btn-box">
+          <a href="{% url 'app1:add_user_info' %}">
+              Get Started
+          </a>
+      </div>
+  </section>
+ 
+    
+  <!-- end hero section -->
+</div>
+  <!-- end hero area -->
+
+
+  <!-- about section -->
+  <section class="about_section layout_padding" style="margin-top: 130px;">
+    <div class="about_container" style="background-image: url('{% static 'app1/img/about.jpg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+      <div class="container">
+        <div class="detail">
+          <h2 class="custom_heading">
+            About Us
+          </h2>
+          <p>
+            Maintaining a proper diet is crucial for overall health. It provides essential nutrients,
+            aids in weight management, prevents diseases, improves mental health, boosts energy levels,
+            aids digestion, supports healthy aging, enhances sleep quality, and optimizes physical performance.
+            A balanced diet, rich in a variety of foods, is key to achieving these benefits.
+        </p>
+        <p>
+            At WELLNEST, we understand the importance of your health. That's why we use the Subjective Global Assessment (SGA)
+            to evaluate your nutritional status. SGA is a reliable tool that helps us assess your health based on clinical parameters.
+            It allows us to provide personalized guidance to ensure your diet is supporting your well-being.
+        </p>
+        <p>
+            Our health app takes your personal and existing medical information into account and guides you on whether your current diet
+            is sufficient for your health needs. We are dedicated to helping you make informed decisions about your nutrition for a healthier life.
+        </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+  <!-- product section -->
+  <section class="product_section layout_padding" style="margin-top: 1px;">
+    <div class="d-flex justify-content-center">
+      <h2 class="custom_heading">
+        
+      </h2>
+    </div>
+    <div class="container layout_padding2">
+      <div class="img-box box-1">
+        <img src="{% static 'app1/img/p-1.jpg' %}" alt="">
+      </div>
+      <div class="img-box box-2">
+        <img src="{% static 'app1/img/p-2.jpg' %}" alt="">
+      </div>
+      <div class="img-box box-3">
+        <img src="{% static 'app1/img/p-3.jpg' %}" alt="">
+      </div>
+      <div class="img-box box-4">
+        <img src="{% static 'app1/img/p-4.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <a href="">
+        See More
+      </a>
+    </div>
+  </section>
+
+
+  <!-- end product section -->
+
+  <!-- why section -->
+
+  <section class="why_section layout_padding">
+    <div class="container">
+      <div class="d-flex flex-column align-items-center text-center">
+        <h2 class="custom_heading "style="color:white">
+          Why choose Us?
+        </h2>
+        <p style="color:white">
+          Wellnest provides with a free health check sitting at home with just a few clicks.
+          It is user friendly and is suitable for people of all age,height,weight and body type.
+        </p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <a href="{% url 'app1:add_user_info' %}">
+        Get Started
+      </a>
+    </div>
+  </section>
+
+  <!-- end why section -->
+
+
+
+  <!-- contact section -->
+
+  <section class="contact_section layout_padding">
+    <div class="container">
+      <div class="col-md-6">
+        <div class="d-flex mb-4 ml-4 ml-md-0">
+          <h2 class="custom_heading text-center">
+            CONTACT US
+          </h2>
+        </div>
+        <form action="">
+          <div>
+            <input type="text" placeholder="Name" />
+          </div>
+          <div>
+            <input type="email" placeholder="Email" />
+          </div>
+          <div>
+            <input type="text" placeholder="Phone Number" />
+          </div>
+          <div>
+            <input type="text" class="message-box" placeholder="Message" />
+          </div>
+          <div class="d-flex justify-content-center mt-4 ">
+            <button>
+              SEND
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- end contact section -->
+
+  <!-- client section -->
+  <section class="client_section layout_padding">
+    <div class="d-flex justify-content-center">
+      <h2 class="custom_heading"style="color: white;">
+        Reviews
+      </h2>
+    </div>
+    <div class="container">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="client_container layout_padding">
+              <div class="img_box">
+                <img src="{% static 'app1/img/client.png' %}" alt="">
+              </div>
+
+              <div class="detail_box">
+                <h5>
+                  <span>
+                    M
+                  </span>
+                  <span>
+                    o
+                  </span>
+                  <span>
+                    r
+                  </span>
+                  <span>
+                    s
+                  </span>
+                  <span>
+                    w
+                  </span>
+                </h5>
+                <p>
+                  It is an amazing app,made it so much easier for me to keep a tarck of my health.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="client_container layout_padding">
+              <div class="img_box">
+                <img src="{% static 'app1/img/client.png' %}" alt="">
+              </div>
+
+              <div class="detail_box">
+                <h5>
+                  <span>
+                    M
+                  </span>
+                  <span>
+                    o
+                  </span>
+                  <span>
+                    r
+                  </span>
+                  <span>
+                    s
+                  </span>
+                  <span>
+                    w
+                  </span>
+                </h5>
+                <p>
+                 Welnnest is very useful.I t is helping me save a lot of money and trips to the hospital.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="client_container layout_padding">
+              <div class="img_box">
+                <img src="{% static 'app1/img/client.png' %}" alt="">
+              </div>
+
+              <div class="detail_box">
+                <h5>
+                  <span>
+                    M
+                  </span>
+                  <span>
+                    o
+                  </span>
+                  <span>
+                    r
+                  </span>
+                  <span>
+                    s
+                  </span>
+                  <span>
+                    w
+                  </span>
+                </h5>
+                <p>
+                  A neighbour recommended this app to us and now our whole family uses it. It keeps us healthy and lets us keep a track of our diets
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- end client section -->
+
+  <!-- info section -->
+  <section class="info_section layout_padding">
+    <div class="container layout_padding-top  layout_padding2-bottom">
+      <div class="logo-box">
+        <a href="{% url 'app1:home' %}">
+          <img src="{% static 'app1/img/info-logo.png' %}" alt="">
+        </a>
+      </div>
+      <div class="info_items">
+        <a href="">
+          <div class="item ">
+            <div class="img-box box-1">
+              <img src="{% static 'app1/img/location-white.png' %}" alt="" />
+            </div>
+            <div class="detail-box">
+              <p>
+                1234,ABCD street ,IIT(BHU), Varanasi
+              </p>
+            </div>
+          </div>
+        </a>
+        <a href="">
+          <div class="item ">
+            <div class="img-box box-3">
+              <img src="{% static 'app1/img/envelope-white.png' %}" alt="" />
+            </div>
+            <div class="detail-box">
+              <p>
+                demo@gmail.com
+              </p>
+            </div>
+          </div>
+        </a>
+        <a href="">
+          <div class="item ">
+            <div class="img-box box-2">
+              <img src="{% static 'app1/img/telephone-white.png' %}" alt="" />
+            </div>
+            <div class="detail-box">
+              <p>
+                +02 1234567890
+              </p>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- end info_section -->
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+    <p>
+      &copy; 2019 All Rights Reserved By
+      <a href="https://html.design/">Free Html Templates</a>
+    </p>
+  </section>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="{% static 'app1/js/jquery-3.4.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'app1/js/bootstrap.js' %}"></script>
 </body>
+
 </html>
