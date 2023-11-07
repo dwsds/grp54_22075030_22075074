@@ -31,12 +31,10 @@ def add_user_info(request):
         if user_info_form.is_valid() and personal_info_form.is_valid():
             user_info = user_info_form.save()
             personal_info = personal_info_form.save()
+
             user_age = user_info_form.cleaned_data['age']
-            
             user_weight = personal_info_form.cleaned_data['weight']
             user_name = user_info_form.cleaned_data['user_name']
-            # Pass the user_name to the context
-            
             user_height = personal_info_form.cleaned_data['height']
             user_lost = personal_info_form.cleaned_data['weight_lost']
 
